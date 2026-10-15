@@ -1,0 +1,17 @@
+schema = 1
+id = "agent-queue"
+name = "Agent Queue"
+version = "0.1.0"
+description = "Queues omp agents that are waiting on you, with the context to pick each one back up."
+icon = "inbox"
+host = "host.luau"
+window = "window.luau"
+styles = ["agent-queue.css"]
+
+[[blocks]]
+id = "side"
+title = "Agent queue"
+
+[[blocks]]
+id = "picker"
+title = "Pick an agent"

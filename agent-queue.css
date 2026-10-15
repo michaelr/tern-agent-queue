@@ -1,0 +1,122 @@
+/* The picker: a search box over rows of equal-width cards (the row's role
+   names how many), the selected one ringed. */
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.search'] {
+	padding: 4px 8px;
+	border-radius: 6px;
+	box-shadow: 0 0 0 1px var(--l3);
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role^='agent-queue.pick-row.'] {
+	display: grid;
+	align-items: stretch;
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.pick-row.1'] {
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.pick-row.2'] {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.pick-row.3'] {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.pick-row.4'] {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.pick-row.5'] {
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] .sf-card[data-role^='agent-queue.pick'] {
+	cursor: pointer;
+}
+
+/* Scenes are cropped to a 2:1 box (padding sized from the width), so a
+   card's height follows its width; lib/picker.luau counts on it. Clicks pass
+   through to the card (which picks) rather than open the image. */
+.sf-main[data-surface='plugin.agent-queue.picker'] .sf-card[data-role^='agent-queue.pick'] .sf-image {
+	height: 0;
+	padding-top: 50%;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] .sf-card[data-role^='agent-queue.pick'] .sf-img-frame {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+}
+
+/* An agent without a scene gets the same 2:1 box, its folder name centered. */
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.noscene'] {
+	position: relative;
+	height: 0;
+	padding-top: 50%;
+	overflow: hidden;
+	border-radius: 6px;
+	background: var(--l1);
+	box-shadow: 0 0 0 1px var(--l1);
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] [data-role='agent-queue.noscene'] > * {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 12px;
+	font-size: 1.4em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.sf-main[data-surface='plugin.agent-queue.picker'] .sf-card[data-role='agent-queue.pick.selected'] {
+	box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* The side pane's rows: the agent's scene as a square icon (cropped from
+   the 2:1 scene) beside its title and place. Clicks pass through to the row
+   (which goes to the agent) rather than open the image. */
+.sf-main[data-surface='plugin.agent-queue.side'] [data-role='agent-queue.row'] {
+	align-items: flex-start;
+	padding: 2px 0;
+}
+
+.sf-main[data-surface='plugin.agent-queue.side'] [data-role='agent-queue.row-text'] {
+	min-width: 0;
+}
+
+.sf-main[data-surface='plugin.agent-queue.side'] [data-role^='agent-queue.thumb'] {
+	position: relative;
+	flex: none;
+	width: 36px;
+	height: 36px;
+	overflow: hidden;
+	border-radius: 6px;
+	pointer-events: none;
+}
+
+.sf-main[data-surface='plugin.agent-queue.side'] [data-role='agent-queue.thumb'] .sf-img-frame {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+}
+
+.sf-main[data-surface='plugin.agent-queue.side'] [data-role='agent-queue.thumb-none'] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--l1);
+	box-shadow: 0 0 0 1px var(--l1);
+}
